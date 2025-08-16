@@ -1,0 +1,982 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SAMIH HAGAG | Samih Hagag</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Orbitron', 'Segoe UI', sans-serif;
+        }
+        
+        body {
+            background: radial-gradient(ellipse at bottom, #0a0a15 0%, #000000 100%);
+            color: #ffffff;
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 15px;
+        }
+        
+        .cyber-grid {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                linear-gradient(rgba(10, 10, 21, 0.8) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(10, 10, 21, 0.8) 1px, transparent 1px);
+            background-size: 50px 50px;
+            z-index: -1;
+            opacity: 0.2;
+        }
+        
+        .particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+        
+        .particle {
+            position: absolute;
+            background: rgba(0, 200, 255, 0.5);
+            border-radius: 50%;
+            animation: float 15s infinite linear;
+        }
+        
+        .glass-command {
+            max-width: 1100px;
+            width: 100%;
+            background: rgba(10, 15, 25, 0.6);
+            backdrop-filter: blur(16px);
+            border-radius: 25px;
+            overflow: hidden;
+            box-shadow: 
+                0 0 0 1px rgba(0, 200, 255, 0.1),
+                0 0 50px rgba(0, 100, 255, 0.2),
+                inset 0 0 100px rgba(0, 50, 100, 0.3);
+            position: relative;
+            z-index: 10;
+            padding: 35px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        
+        .glass-command::before {
+            content: '';
+            position: absolute;
+            top: -1px;
+            left: -1px;
+            right: -1px;
+            bottom: -1px;
+            background: linear-gradient(45deg, 
+                rgba(0, 100, 200, 0.3), 
+                rgba(0, 200, 100, 0.2), 
+                rgba(200, 0, 100, 0.2));
+            z-index: -1;
+            border-radius: 26px;
+            animation: gradientAnimation 20s ease infinite;
+            background-size: 300% 300%;
+        }
+        
+        .scorpion-header {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 28px;
+            color: #ff3300;
+            text-shadow: 0 0 15px rgba(255, 51, 0, 0.7);
+            z-index: 5;
+            animation: pulseScorpion 2s infinite alternate;
+        }
+        
+        .header-section {
+            text-align: center;
+            margin-bottom: 35px;
+            position: relative;
+            padding-bottom: 25px;
+        }
+        
+        .header-section::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 30%;
+            width: 40%;
+            height: 2px;
+            background: linear-gradient(to right, transparent, #00ffcc, transparent);
+            box-shadow: 0 0 10px #00ffcc;
+        }
+        
+        .title {
+            font-size: 3.5rem;
+            font-weight: 800;
+            background: linear-gradient(to right, #00ffcc, #0099ff, #cc00ff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            text-shadow: 0 0 15px rgba(0, 200, 255, 0.4);
+        }
+        
+        .subtitle {
+            font-size: 1.4rem;
+            color: rgba(200, 220, 255, 0.8);
+            font-weight: 300;
+            letter-spacing: 1px;
+        }
+        
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin: 35px 0;
+        }
+        
+        .terminal-section {
+            background: rgba(5, 10, 20, 0.5);
+            border-radius: 18px;
+            padding: 28px;
+            border: 1px solid rgba(0, 200, 255, 0.2);
+            box-shadow: 
+                inset 0 0 20px rgba(0, 0, 0, 0.3),
+                0 5px 30px rgba(0, 50, 100, 0.3);
+            overflow: hidden;
+            position: relative;
+            backdrop-filter: blur(8px);
+        }
+        
+        .scorpion-corner {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 26px;
+            color: #ff3300;
+            text-shadow: 0 0 15px rgba(255, 51, 0, 0.7);
+            z-index: 5;
+            animation: pulseScorpion 2s infinite alternate;
+        }
+        
+        .terminal-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 22px;
+            padding-bottom: 18px;
+            border-bottom: 1px solid rgba(0, 200, 255, 0.2);
+        }
+        
+        .terminal-title {
+            font-size: 1.6rem;
+            font-weight: 600;
+            color: #00ffcc;
+            margin-left: 12px;
+            text-shadow: 0 0 8px rgba(0, 255, 200, 0.4);
+        }
+        
+        .terminal-dots {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .dot {
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            box-shadow: 0 0 8px currentColor;
+        }
+        
+        .dot-red { background: #ff5f57; }
+        .dot-yellow { background: #ffbd2e; }
+        .dot-green { background: #28c940; }
+        
+        .terminal-content {
+            font-family: 'Courier New', monospace;
+            font-size: 1.2rem;
+            line-height: 1.8;
+            color: rgba(220, 240, 255, 0.95);
+        }
+        
+        .terminal-line {
+            display: flex;
+            margin: 18px 0;
+            align-items: center;
+        }
+        
+        .terminal-prompt {
+            color: #00ffcc;
+            margin-right: 12px;
+            font-weight: bold;
+            min-width: 35px;
+            text-shadow: 0 0 8px rgba(0, 255, 200, 0.4);
+        }
+        
+        .terminal-cursor {
+            display: inline-block;
+            width: 8px;
+            height: 22px;
+            background: #00ffcc;
+            margin-left: 6px;
+            animation: blink 1s infinite;
+            box-shadow: 0 0 8px #00ffcc;
+        }
+        
+        .battery-container {
+            display: flex;
+            align-items: center;
+            margin-top: 15px;
+            padding: 10px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+        }
+        
+        .battery-icon {
+            width: 45px;
+            height: 24px;
+            border: 2px solid rgba(220, 240, 255, 0.7);
+            border-radius: 6px;
+            position: relative;
+            margin-right: 15px;
+            background: rgba(0, 0, 0, 0.4);
+            overflow: hidden;
+        }
+        
+        .battery-level {
+            height: 100%;
+            width: 85%;
+            background: linear-gradient(to right, #28c940, #00ffcc);
+            border-radius: 4px;
+            transition: width 0.5s ease;
+            box-shadow: 0 0 10px rgba(40, 201, 64, 0.5);
+        }
+        
+        .battery-tip {
+            position: absolute;
+            right: -5px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 4px;
+            height: 12px;
+            background: rgba(220, 240, 255, 0.7);
+            border-radius: 0 4px 4px 0;
+        }
+        
+        .profile-section {
+            background: rgba(5, 10, 20, 0.5);
+            border-radius: 18px;
+            padding: 28px;
+            border: 1px solid rgba(0, 200, 255, 0.2);
+            box-shadow: 
+                inset 0 0 20px rgba(0, 0, 0, 0.3),
+                0 5px 30px rgba(0, 50, 100, 0.3);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            backdrop-filter: blur(8px);
+        }
+        
+        .scorpion-corner-profile {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 26px;
+            color: #ff3300;
+            text-shadow: 0 0 15px rgba(255, 51, 0, 0.7);
+            z-index: 5;
+            animation: pulseScorpion 2s infinite alternate;
+        }
+        
+        .profile-container {
+            position: relative;
+            width: 220px;
+            height: 220px;
+            border-radius: 50%;
+            overflow: hidden;
+            box-shadow: 
+                0 0 30px rgba(0, 255, 200, 0.4),
+                0 0 60px rgba(0, 100, 255, 0.3);
+            border: 2px solid rgba(0, 200, 255, 0.3);
+            margin-bottom: 30px;
+            background: linear-gradient(135deg, #00ffcc, #0099ff, #cc00ff);
+            padding: 5px;
+        }
+        
+        .profile-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+            background: #050a15;
+            padding: 5px;
+        }
+        
+        .info-card {
+            text-align: center;
+            width: 100%;
+        }
+        
+        .name {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+            letter-spacing: 1.5px;
+            background: linear-gradient(to right, #00ffcc, #0099ff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 0 12px rgba(0, 200, 255, 0.4);
+        }
+        
+        .phone-number {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: rgba(220, 240, 255, 0.95);
+            letter-spacing: 1.5px;
+            font-family: 'Courier New', monospace;
+            background: rgba(0, 0, 0, 0.4);
+            padding: 8px 20px;
+            border-radius: 12px;
+            display: inline-block;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 0 15px rgba(0, 200, 255, 0.3);
+        }
+        
+        .social-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            margin: 40px 0;
+        }
+        
+        .social-card {
+            background: rgba(10, 20, 40, 0.5);
+            border-radius: 16px;
+            padding: 25px;
+            text-align: center;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(0, 200, 255, 0.2);
+            box-shadow: 
+                inset 0 0 15px rgba(0, 0, 0, 0.3),
+                0 8px 25px rgba(0, 50, 100, 0.3);
+            cursor: pointer;
+            backdrop-filter: blur(6px);
+        }
+        
+        .social-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(to right, #00ffcc, #0099ff);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s ease;
+        }
+        
+        .social-card:hover {
+            transform: translateY(-8px);
+            background: rgba(15, 30, 50, 0.6);
+            box-shadow: 
+                0 15px 35px rgba(0, 50, 100, 0.4), 
+                0 0 0 2px rgba(0, 200, 255, 0.3),
+                0 0 30px rgba(0, 200, 255, 0.3);
+        }
+        
+        .social-card:hover::before {
+            transform: scaleX(1);
+        }
+        
+        .social-icon {
+            font-size: 2.8rem;
+            margin-bottom: 20px;
+            background: linear-gradient(to bottom, #00ffcc, #0099ff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            text-shadow: 0 0 15px rgba(0, 200, 255, 0.4);
+        }
+        
+        .social-card:hover .social-icon {
+            transform: scale(1.2);
+        }
+        
+        .social-name {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: rgba(220, 240, 255, 0.95);
+            letter-spacing: 0.8px;
+        }
+        
+        .social-handle {
+            font-size: 0.95rem;
+            color: rgba(180, 220, 255, 0.7);
+            font-weight: 300;
+            font-family: 'Courier New', monospace;
+        }
+        
+        .tech-stats {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin: 30px 0;
+            flex-wrap: wrap;
+        }
+        
+        .stat-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-width: 140px;
+            background: rgba(10, 20, 40, 0.5);
+            padding: 20px;
+            border-radius: 16px;
+            border: 1px solid rgba(0, 200, 255, 0.2);
+            box-shadow: 
+                inset 0 0 15px rgba(0, 0, 0, 0.3),
+                0 8px 25px rgba(0, 50, 100, 0.3);
+            backdrop-filter: blur(6px);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        
+        .stat-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 
+                0 12px 30px rgba(0, 50, 100, 0.4),
+                0 0 25px rgba(0, 200, 255, 0.3);
+        }
+        
+        .stat-value {
+            font-size: 2rem;
+            font-weight: 700;
+            background: linear-gradient(to right, #00ffcc, #0099ff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 8px;
+            text-shadow: 0 0 15px rgba(0, 200, 255, 0.4);
+        }
+        
+        .stat-label {
+            font-size: 1rem;
+            color: rgba(180, 220, 255, 0.7);
+            letter-spacing: 1.2px;
+            text-transform: uppercase;
+        }
+        
+        .footer {
+            width: 100%;
+            text-align: center;
+            padding: 25px 0 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            margin-top: 20px;
+        }
+        
+        .copyright {
+            font-size: 1rem;
+            color: rgba(180, 220, 255, 0.6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            letter-spacing: 0.8px;
+        }
+        
+        .developer {
+            background: rgba(0, 0, 0, 0.4);
+            padding: 6px 15px;
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 0 15px rgba(0, 200, 255, 0.3);
+        }
+        
+        .cookie-banner {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(10, 20, 40, 0.9);
+            border: 1px solid rgba(0, 200, 255, 0.3);
+            border-radius: 12px;
+            padding: 20px;
+            width: 90%;
+            max-width: 600px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+            z-index: 100;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            opacity: 0;
+            animation: slideUp 0.8s forwards 1s;
+        }
+        
+        .cookie-content {
+            text-align: center;
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: rgba(220, 240, 255, 0.9);
+        }
+        
+        .cookie-buttons {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .cookie-btn {
+            padding: 12px 30px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .accept-btn {
+            background: linear-gradient(to right, #00cc99, #0099ff);
+            color: #fff;
+            box-shadow: 0 0 15px rgba(0, 200, 255, 0.4);
+        }
+        
+        .reject-btn {
+            background: rgba(40, 40, 60, 0.8);
+            color: rgba(220, 240, 255, 0.9);
+            border: 1px solid rgba(0, 200, 255, 0.3);
+        }
+        
+        .cookie-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 20px rgba(0, 200, 255, 0.5);
+        }
+        
+        /* Animations */
+        @keyframes gradientAnimation {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        @keyframes blink {
+            0% { opacity: 1; }
+            50% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes pulseScorpion {
+            0% { transform: scale(1); text-shadow: 0 0 15px rgba(255, 51, 0, 0.7); }
+            100% { transform: scale(1.1); text-shadow: 0 0 25px rgba(255, 51, 0, 0.9); }
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0) translateX(0) rotate(0); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(-1000px) translateX(1000px) rotate(360deg); opacity: 0; }
+        }
+        
+        @keyframes slideUp {
+            0% { opacity: 0; transform: translate(-50%, 30px); }
+            100% { opacity: 1; transform: translate(-50%, 0); }
+        }
+        
+        /* Responsive */
+        @media (max-width: 1000px) {
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .social-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .title {
+                font-size: 2.8rem;
+            }
+            
+            .glass-command {
+                padding: 28px 22px;
+            }
+        }
+        
+        @media (max-width: 700px) {
+            .social-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .tech-stats {
+                gap: 20px;
+            }
+            
+            .stat-item {
+                min-width: 120px;
+                padding: 18px;
+            }
+            
+            .title {
+                font-size: 2.2rem;
+            }
+            
+            .terminal-content {
+                font-size: 1.1rem;
+            }
+            
+            .profile-container {
+                width: 180px;
+                height: 180px;
+            }
+            
+            .name {
+                font-size: 1.7rem;
+            }
+            
+            .phone-number {
+                font-size: 1.3rem;
+            }
+        }
+        
+        @media (max-width: 500px) {
+            .title {
+                font-size: 1.9rem;
+            }
+            
+            .subtitle {
+                font-size: 1.1rem;
+            }
+            
+            .social-card {
+                padding: 20px;
+            }
+            
+            .glass-command {
+                padding: 20px 15px;
+            }
+            
+            .cookie-banner {
+                flex-direction: column;
+                padding: 15px;
+            }
+            
+            .cookie-buttons {
+                flex-direction: column;
+                width: 100%;
+            }
+            
+            .cookie-btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Cyber grid background -->
+    <div class="cyber-grid"></div>
+    
+    <!-- Animated particles -->
+    <div class="particles" id="particles"></div>
+    
+    <!-- Digital Command Center -->
+    <div class="glass-command">
+        <div class="scorpion-header">🦂</div>
+        
+        <div class="header-section">
+            <h1 class="title">CYBERNETIC COMMAND</h1>
+            <p class="subtitle">Advanced Control System | Samih Hagag</p>
+        </div>
+        
+        <div class="main-content">
+            <div class="terminal-section">
+                <div class="scorpion-corner">🦂</div>
+                <div class="terminal-header">
+                    <div class="terminal-dots">
+                        <div class="dot dot-red"></div>
+                        <div class="dot dot-yellow"></div>
+                        <div class="dot dot-green"></div>
+                    </div>
+                    <div class="terminal-title">SYSTEM TERMINAL</div>
+                </div>
+                
+                <div class="terminal-content">
+                    <div class="terminal-line">
+                        <div class="terminal-prompt">$></div>
+                        <div>WelcomeNo Website  <span style="color: #00ffcc; text-shadow: 0 0 10px #00ffcc;">Samih Hagag</span> 👑</div>
+                    </div>
+                    <div class="terminal-line">
+                        <div class="terminal-prompt">$></div>
+                        <div>System initialization complete</div>
+                    </div>
+                    <div class="terminal-line">
+                        <div class="terminal-prompt">$></div>
+                        <div>Current status: <span style="color: #28c940; text-shadow: 0 0 10px #28c940;">Operational</span></div>
+                    </div>
+                    <div class="terminal-line">
+                        <div class="terminal-prompt">$></div>
+                        <div>IP Address: <span id="ip-address" style="color: #00ffcc; text-shadow: 0 0 10px #00ffcc;">192.168.1.108</span></div>
+                    </div>
+                    <div class="terminal-line">
+                        <div class="terminal-prompt">$></div>
+                        <div>Member ID: <span style="color: #00ffcc; text-shadow: 0 0 10px #00ffcc;">#SC-007</span></div>
+                    </div>
+                    <div class="terminal-line">
+                        <div class="terminal-prompt">$></div>
+                        <div>Battery Status:</div>
+                    </div>
+                    <div class="battery-container">
+                        <div class="battery-icon">
+                            <div id="battery-level" class="battery-level"></div>
+                            <div class="battery-tip"></div>
+                        </div>
+                        <div id="battery-text">85% - Optimal</div>
+                    </div>
+                    <div class="terminal-line">
+                        <div class="terminal-prompt">$></div>
+                        <div>Security: <span style="color: #28c940; text-shadow: 0 0 10px #28c940;">Active</span></div>
+                        <div class="terminal-cursor"></div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="profile-section">
+                <div class="scorpion-corner-profile">🦂</div>
+                <div class="profile-container">
+                    <img src="https://dev-ianstagram.pantheonsite.io/wp-content/uploads/2025/08/IMG-20250816-WA0002.jpg" alt="Profile Image" class="profile-img">
+                </div>
+                
+                <div class="info-card">
+                    <div class="name">SAMIH HAGAG</div>
+                    <div class="phone-number">01270046489</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="social-grid">
+            <div class="social-card" onclick="window.open('https://www.instagram.com/samihhagag?igsh=OGY0bmVjaW80aXd1', '_blank')">
+                <i class="fab fa-instagram social-icon"></i>
+                <div class="social-name">Instagram</div>
+                <div class="social-handle">@samihhagag</div>
+            </div>
+            
+            <div class="social-card" onclick="window.open('https://www.facebook.com/profile.php?id=61552541759468', '_blank')">
+                <i class="fab fa-facebook social-icon"></i>
+                <div class="social-name">Facebook</div>
+                <div class="social-handle">Samih Hagag</div>
+            </div>
+            
+            <div class="social-card" onclick="window.open('https://t.me/OXxboykaxX0', '_blank')">
+                <i class="fab fa-telegram social-icon"></i>
+                <div class="social-name">Telegram</div>
+                <div class="social-handle">@OXxboykaxX0</div>
+            </div>
+            
+            <div class="social-card" onclick="window.open('https://wa.me/201270046489', '_blank')">
+                <i class="fab fa-whatsapp social-icon"></i>
+                <div class="social-name">WhatsApp</div>
+                <div class="social-handle">+201270046489</div>
+            </div>
+        </div>
+        
+        <div class="tech-stats">
+            <div class="stat-item">
+                <div class="stat-value">99.9%</div>
+                <div class="stat-label">UPTIME</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value">1.2ms</div>
+                <div class="stat-label">LATENCY</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value">∞</div>
+                <div class="stat-label">REACH</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value">24/7</div>
+                <div class="stat-label">AVAILABLE</div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <div class="copyright">
+                <i class="fas fa-terminal"></i>
+                <span>Copyright reserved by SAMIH HAGAG| © 2025 <span class="developer">Developed by @A_Y_TR</span> </span>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Cookie Banner -->
+    <div class="cookie-banner" id="cookieBanner">
+        <div class="cookie-content">
+            <i class="fas fa-cookie-bite" style="font-size: 2rem; margin-bottom: 15px; color: #00ffcc;"></i>
+            <h3 style="margin-bottom: 10px; color: #00ffcc;">We Use Cookies</h3>
+            <p>This website uses cookies to enhance your experience and analyze site traffic. By continuing to use this site, you consent to our use of cookies.</p>
+        </div>
+        <div class="cookie-buttons">
+            <button class="cookie-btn accept-btn" onclick="acceptCookies()">Accept All</button>
+            <button class="cookie-btn reject-btn" onclick="rejectCookies()">Reject Non-Essential</button>
+        </div>
+    </div>
+    
+    <script>
+        // Initialize with smooth performance
+        document.addEventListener('DOMContentLoaded', function() {
+            // Create animated particles
+            createParticles();
+            
+            // Terminal typing effect
+            const terminalLines = document.querySelectorAll('.terminal-line');
+            let delay = 0;
+            
+            terminalLines.forEach((line, index) => {
+                line.style.opacity = '0';
+                line.style.animation = `fadeIn 0.5s ${delay}s forwards`;
+                delay += 0.3;
+            });
+            
+            // Get user's IP address
+            fetch('https://api.ipify.org?format=json')
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('ip-address').textContent = data.ip;
+                })
+                .catch(() => {
+                    document.getElementById('ip-address').textContent = '192.168.1.108';
+                });
+            
+            // Get battery status
+            if ('getBattery' in navigator) {
+                navigator.getBattery().then(battery => {
+                    updateBatteryStatus(battery);
+                    
+                    battery.addEventListener('chargingchange', () => {
+                        updateBatteryStatus(battery);
+                    });
+                    
+                    battery.addEventListener('levelchange', () => {
+                        updateBatteryStatus(battery);
+                    });
+                });
+            } else {
+                // Fallback for browsers that don't support battery API
+                document.getElementById('battery-level').style.width = '85%';
+                document.getElementById('battery-text').textContent = '85% - Optimal';
+            }
+            
+            // Check if cookies are accepted
+            if (!localStorage.getItem('cookiesAccepted')) {
+                document.getElementById('cookieBanner').style.display = 'flex';
+            } else {
+                document.getElementById('cookieBanner').style.display = 'none';
+            }
+        });
+        
+        function updateBatteryStatus(battery) {
+            const batteryLevel = Math.round(battery.level * 100);
+            const batteryLevelElement = document.getElementById('battery-level');
+            const batteryTextElement = document.getElementById('battery-text');
+            
+            batteryLevelElement.style.width = `${batteryLevel}%`;
+            
+            // Update battery color based on level
+            if (batteryLevel > 70) {
+                batteryLevelElement.style.background = 'linear-gradient(to right, #28c940, #00ffcc)';
+            } else if (batteryLevel > 30) {
+                batteryLevelElement.style.background = 'linear-gradient(to right, #ffbd2e, #ff5f57)';
+            } else {
+                batteryLevelElement.style.background = 'linear-gradient(to right, #ff5f57, #ff3300)';
+            }
+            
+            // Update text
+            let statusText = `${batteryLevel}%`;
+            if (battery.charging) {
+                statusText += ' - Charging';
+                batteryLevelElement.style.background = 'linear-gradient(to right, #00c9ff, #2575fc)';
+            } else if (batteryLevel > 90) {
+                statusText += ' - Full';
+            } else if (batteryLevel > 70) {
+                statusText += ' - Optimal';
+            } else if (batteryLevel > 30) {
+                statusText += ' - Moderate';
+            } else {
+                statusText += ' - Low';
+            }
+            
+            batteryTextElement.textContent = statusText;
+        }
+        
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            const particleCount = 30;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+                
+                // Random size
+                const size = Math.random() * 5 + 1;
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                
+                // Random position
+                particle.style.left = `${Math.random() * 100}%`;
+                particle.style.top = `${Math.random() * 100}%`;
+                
+                // Random color
+                const colors = ['#00ffcc', '#0099ff', '#cc00ff', '#ff3300', '#ffff00'];
+                particle.style.background = colors[Math.floor(Math.random() * colors.length)];
+                
+                // Random animation duration
+                const duration = Math.random() * 20 + 10;
+                particle.style.animationDuration = `${duration}s`;
+                
+                // Random delay
+                const delay = Math.random() * 5;
+                particle.style.animationDelay = `${delay}s`;
+                
+                particlesContainer.appendChild(particle);
+            }
+        }
+        
+        function acceptCookies() {
+            localStorage.setItem('cookiesAccepted', 'true');
+            document.getElementById('cookieBanner').style.animation = 'slideUp 0.8s reverse forwards';
+            setTimeout(() => {
+                document.getElementById('cookieBanner').style.display = 'none';
+            }, 800);
+        }
+        
+        function rejectCookies() {
+            localStorage.setItem('cookiesAccepted', 'false');
+            document.getElementById('cookieBanner').style.animation = 'slideUp 0.8s reverse forwards';
+            setTimeout(() => {
+                document.getElementById('cookieBanner').style.display = 'none';
+            }, 800);
+        }
+    </script>
+</body>
+</html>
